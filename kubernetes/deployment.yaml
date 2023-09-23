@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecomern-deployment
+  labels:
+    name: ecommerce-app
+    app: ecomern-backend
+spec:
+  selector:
+    matchLabels:
+      name: ecommerce-app
+      app: ecomern-backend
+  template:
+    metadata:
+      name: backend
+      labels:
+        name: ecommerce-app
+        app: ecomern-backend
+    spec:
+      containers:
+        - name: ecomern-backend
+          image: thehufaaz/ecomern-backend
+          env:
+            - name: MONGO_URL
+              value: "mongodb+srv://abdul:Kaosarat95@cluster0.cwh7nbp.mongodb.net/?retryWrites=true&w=majority"
+            - name: STRIPE_SECRET
+              value: "sk_test_51N7J5xEIAKFbGx0oXvlGiVuOF78VSFD39C97ITjaSb72sydxPheVtVTYCi7DKu39fW2ffBKi97DXAkDdCSgAwHd000iq52VhSz"
+            - name: CLIENT_API
+              value: "http://18.212.122.76:30005"
+          ports:
+            - containerPort: 8000
+  replicas: 1
+    

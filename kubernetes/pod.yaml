@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: backend
+  labels:
+    app: ecomern-backend
+    name: ecommerce-app
+spec:
+  containers:
+    - name: ecomern-backend
+      image: thehufaaz/ecomern-backend
+      ports:
+        - containerPort: 8000
